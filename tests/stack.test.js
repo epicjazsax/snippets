@@ -1,6 +1,6 @@
 const Stack = require('../stack');
 
-test('uses a "show" method to return its "items" array', () => {
+test('contains a method to show its items', () => {
 	const testStack = new Stack;
 	expect(testStack.show()).toEqual(testStack['items'])
 })
