@@ -3,12 +3,12 @@ class Stack {
 		this.items = []
 	}
 
-	add(item) {
-		this.items.unshift(item)
+	push(item) {
+		this.items.push(item)
 	}
 
-	remove() {
-		this.items.shift()
+	pop() {
+		this.items.pop()
 	}
 
 	show() {
