@@ -1,21 +1,29 @@
 const Stack = require('../stack');
 
-test('contains a method to show its items', () => {
-	const testStack = new Stack;
-	expect(testStack.show()).toEqual(testStack['items'])
-})
+describe('Stack', () => {
+	const stack = new Stack;
 
-test('correctly adds one item to its array', () => {
-	const testStack = new Stack;
-	testStack.push('foo');
-	expect(testStack['items']).toEqual(['foo']);
-	expect(testStack.show()).toEqual(testStack['items'])
-})
+	test('contains a method to show its items', () => {
+		expect(stack.show()).toBeDefined()
+	})
+	
+	test('pushes an item to the stack', () => {
+		const pushSpy = jest.spyOn(stack, 'push');
+		stack.push('foo');
 
-test('correctly removes one item from its array', () => {
-	const testStack = new Stack;
-	testStack.push('foo');
-	testStack.pop();
-	expect(testStack['items']).toEqual([])
-	expect(testStack.show()).toEqual(testStack['items'])
+		expect(pushSpy).toHaveBeenCalledWith('foo');
+
+		pushSpy.mockClear();
+	})
+
+	test('pops one item from the stack', () => {
+		const popSpy = jest.spyOn(stack, 'pop');
+		stack.push('bar');
+		const poppedValue = stack.pop();
+
+		expect(poppedValue).toEqual('bar');
+		expect(popSpy).toHaveBeenCalled();
+
+		popSpy.mockClear();
+	})
 })

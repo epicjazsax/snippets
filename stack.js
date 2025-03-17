@@ -4,11 +4,11 @@ class Stack {
 	}
 
 	push(item) {
-		this.items.push(item)
+		return this.items.push(item)
 	}
 
 	pop() {
-		this.items.pop()
+		return this.items.pop()
 	}
 
 	show() {
