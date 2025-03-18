@@ -36,6 +36,12 @@ describe('Stack', () => {
 		expect(stack.items).toContain(valueTwo)
 	})
 
+	test('throws error when no argument is given to push', () => {
+		expect(() => {
+			stack.push()
+		}).toThrow();
+	})
+
 	test('pops one item from the stack', () => {
 		const popSpy = jest.spyOn(stack, 'pop');
 		const initialValue = 'Pop Bar';
