@@ -9,26 +9,25 @@ describe('Stack', () => {
 		expect(typeof(shownList)).toBe('object')
 	})
 	
-	test('pushes one item to the stack', () => {
-		const pushSpy = jest.spyOn(stack, 'push');
+	test('pushes one item and shows it in the stack', () => {
 		const pushedValue = 'Push Foo';
+
 		stack.push(pushedValue);
+		const stackAfterPushing = stack.show();
 
-		expect(pushSpy).toHaveBeenCalledWith(pushedValue);
-		expect(stack.items).toContain(pushedValue);
-
-		pushSpy.mockClear();
+		expect(stackAfterPushing).toContain(pushedValue);
 	})
 
-	test('pushes an array of two items to the stack', () => {
+	test('pushes an array of two items and shows them in the stack', () => {
 		const valueOne = 'hello';
 		const valueTwo = 'world';
 		const pushedArray = [valueOne, valueTwo];
 
 		stack.push(pushedArray);
+		const stackAfterPushingArray = stack.show();
 		
-		expect(stack.items).toContain(valueOne)
-		expect(stack.items).toContain(valueTwo)
+		expect(stackAfterPushingArray).toContain(valueOne)
+		expect(stackAfterPushingArray).toContain(valueTwo)
 	})
 
 	test('throws error when no argument is given to push', () => {
@@ -37,19 +36,12 @@ describe('Stack', () => {
 		}).toThrow();
 	})
 
-	test('pops one item from the stack', () => {
-		const popSpy = jest.spyOn(stack, 'pop');
+	test('pops latest pushed item from the stack', () => {
 		const initialValue = 'Pop Bar';
 		stack.push(initialValue);
+
 		const poppedValue = stack.pop();
 
-		expect(popSpy).toHaveBeenCalled();
 		expect(poppedValue).toEqual(initialValue);
-
-		popSpy.mockClear();
-	})
-
-	test('peeks at one item', () => {
-
 	})
 })
