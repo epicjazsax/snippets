@@ -37,11 +37,20 @@ describe('Stack', () => {
 	})
 
 	test('pops latest pushed item from the stack', () => {
-		const initialValue = 'Pop Bar';
-		stack.push(initialValue);
+		const pushedValue = 'Pop Bar';
+		stack.push(pushedValue);
 
 		const poppedValue = stack.pop();
 
-		expect(poppedValue).toEqual(initialValue);
+		expect(poppedValue).toEqual(pushedValue);
+	})
+
+	test('peeks at latest pushed item from the stack', () => {
+		const pushedValue = 'Peek Me';
+		stack.push(pushedValue);
+
+		const peekedValue = stack.peek();
+
+		expect(peekedValue).toEqual(pushedValue);
 	})
 })

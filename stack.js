@@ -1,5 +1,5 @@
 class Stack {
-	#items = []
+	#items = [];
 
 	push(values) {
 		if (values) {
@@ -20,6 +20,13 @@ class Stack {
 
 	show() {
 		return this.#items
+	}
+
+	peek() {
+		const heightOfStack = this.#items.length;
+		const topOfStack = this.#items[heightOfStack-1];
+
+		return topOfStack 
 	}
 };
 
