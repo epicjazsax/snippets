@@ -1,6 +1,6 @@
 const Stack = require('../stack');
 
-describe('Stack', () => {
+describe('show', () => {
 	const stack = new Stack;
 
 	test('shows its items as an object', () => {
@@ -8,7 +8,11 @@ describe('Stack', () => {
 
 		expect(typeof(shownList)).toBe('object')
 	})
-	
+})
+
+describe('push', () => {
+	const stack = new Stack;
+
 	test('pushes one item and shows it in the stack', () => {
 		const pushedValue = 'Push Foo';
 
@@ -35,6 +39,10 @@ describe('Stack', () => {
 			stack.push()
 		}).toThrow();
 	})
+})
+
+describe('pop', () => {
+	const stack = new Stack;
 
 	test('pops latest pushed item from the stack', () => {
 		const pushedValue = 'Pop Bar';
@@ -44,6 +52,10 @@ describe('Stack', () => {
 
 		expect(poppedValue).toEqual(pushedValue);
 	})
+})
+
+describe('peek', () => {
+	const stack = new Stack;
 
 	test('peeks at latest pushed item from the stack', () => {
 		const pushedValue = 'Peek Me';
@@ -53,6 +65,10 @@ describe('Stack', () => {
 
 		expect(peekedValue).toEqual(pushedValue);
 	})
+})
+
+describe('clear', () => {
+	const stack = new Stack;
 
 	test('clears the stack', () => {
 		stack.push('Making sure stack is not empty yet');
@@ -64,6 +80,10 @@ describe('Stack', () => {
 		expect(stackHeightBeforeClearing).toBeGreaterThan(0);
 		expect(stackHeightAfterClearing).toBe(0);
 	})
+})
+
+describe('isEmpty', () => {
+	const stack = new Stack;
 
 	test('verifies that an empty stack is empty', () => {
 		stack.clear();
