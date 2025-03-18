@@ -53,4 +53,15 @@ describe('Stack', () => {
 
 		expect(peekedValue).toEqual(pushedValue);
 	})
+
+	test('clears the stack', () => {
+		stack.push('Making sure stack is not empty yet');
+		const stackHeightBeforeClearing = stack.show().length;
+
+		stack.clear();
+		const stackHeightAfterClearing = stack.show().length;
+
+		expect(stackHeightBeforeClearing).toBeGreaterThan(0);
+		expect(stackHeightAfterClearing).toBe(0);
+	})
 })

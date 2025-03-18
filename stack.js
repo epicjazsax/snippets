@@ -28,6 +28,12 @@ class Stack {
 
 		return topOfStack 
 	}
+
+	clear() {
+		this.#items = []
+
+		return
+	}
 };
 
 module.exports = Stack
