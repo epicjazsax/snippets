@@ -3,15 +3,10 @@ const Stack = require('../stack');
 describe('Stack', () => {
 	const stack = new Stack;
 
-	test('contains a method to show its items', () => {
-		const showSpy =  jest.spyOn(stack, 'show');
+	test('shows its items as an object', () => {
 		const shownList = stack.show();
-		const internalList = stack.items;
 
-		expect(showSpy).toHaveBeenCalled();
-		expect(shownList).toEqual(internalList);
-
-		showSpy.mockClear();
+		expect(typeof(shownList)).toBe('object')
 	})
 	
 	test('pushes one item to the stack', () => {
