@@ -52,6 +52,14 @@ describe('pop', () => {
 
 		expect(poppedValue).toEqual(pushedValue);
 	})
+
+	test('throws error when there is nothing to pop', () => {
+		stack.clear();
+
+		expect(() => {
+			stack.pop()
+		}).toThrow();
+	})
 })
 
 describe('peek', () => {
@@ -64,6 +72,14 @@ describe('peek', () => {
 		const peekedValue = stack.peek();
 
 		expect(peekedValue).toEqual(pushedValue);
+	})
+
+	test('throws error when there is nothing to peek', () => {
+		stack.clear();
+
+		expect(() => {
+			stack.peek()
+		}).toThrow();
 	})
 })
 

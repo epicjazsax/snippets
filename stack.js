@@ -17,7 +17,11 @@ class Stack {
 	}
 
 	pop() {
-		return this.#items.pop()
+		if (this.#items.length) {
+			return this.#items.pop()
+		}
+
+		throw new Error('there is nothing to pop')
 	}
 
 	show() {
@@ -25,10 +29,14 @@ class Stack {
 	}
 
 	peek() {
-		const heightOfStack = this.#items.length;
-		const topOfStack = this.#items[heightOfStack-1];
+		if (this.#items.length) {
+			const heightOfStack = this.#items.length;
+			const topOfStack = this.#items[heightOfStack-1];
+	
+			return topOfStack 
+		}
 
-		return topOfStack 
+		throw new Error('there is nothing to peek')
 	}
 
 	clear() {
