@@ -2,16 +2,18 @@ class Stack {
 	#items = [];
 
 	push(values) {
-		if (values) {
-			if (typeof values == 'object') {
-				values.forEach((value) => {
-					this.#items.push(value)
-				})
-				return
-			}
-			return this.#items.push(values)
+		if (!values) {
+			throw new Error('must give a value to push')
 		}
-		throw new Error('must give a value to push')
+
+		if (typeof values == 'object') {
+			values.forEach((value) => {
+				this.#items.push(value)
+			})
+			return
+		}
+
+		return this.#items.push(values)
 	}
 
 	pop() {
