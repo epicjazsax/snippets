@@ -3,8 +3,14 @@ class Stack {
 		this.items = []
 	}
 
-	push(item) {
-		return this.items.push(item)
+	push(values) {
+		if (typeof values == 'object') {
+			values.forEach((value) => {
+				this.items.push(value)
+			})
+			return
+		}
+		return this.items.push(values)
 	}
 
 	pop() {

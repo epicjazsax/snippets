@@ -14,7 +14,7 @@ describe('Stack', () => {
 		showSpy.mockClear();
 	})
 	
-	test('pushes an item to the stack', () => {
+	test('pushes one item to the stack', () => {
 		const pushSpy = jest.spyOn(stack, 'push');
 		const pushedValue = 'Push Foo';
 		stack.push(pushedValue);
@@ -23,6 +23,17 @@ describe('Stack', () => {
 		expect(stack.items).toContain(pushedValue);
 
 		pushSpy.mockClear();
+	})
+
+	test('pushes an array of two items to the stack', () => {
+		const valueOne = 'hello';
+		const valueTwo = 'world';
+		const pushedArray = [valueOne, valueTwo];
+
+		stack.push(pushedArray);
+		
+		expect(stack.items).toContain(valueOne)
+		expect(stack.items).toContain(valueTwo)
 	})
 
 	test('pops one item from the stack', () => {
@@ -35,5 +46,9 @@ describe('Stack', () => {
 		expect(poppedValue).toEqual(initialValue);
 
 		popSpy.mockClear();
+	})
+
+	test('peeks at one item', () => {
+
 	})
 })
