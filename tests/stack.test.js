@@ -64,4 +64,18 @@ describe('Stack', () => {
 		expect(stackHeightBeforeClearing).toBeGreaterThan(0);
 		expect(stackHeightAfterClearing).toBe(0);
 	})
+
+	test('verifies that an empty stack is empty', () => {
+		stack.clear();
+		const isEmptyStackEmpty = stack.isEmpty();
+
+		expect(isEmptyStackEmpty).toBe(true)
+	})
+
+	test('verifies that a non-empty stack is not empty', () => {
+		stack.push('Now stack is definitely not empty');
+		const isOccupiedStackEmpty = stack.isEmpty();
+
+		expect(isOccupiedStackEmpty).toBe(false);
+	})
 })

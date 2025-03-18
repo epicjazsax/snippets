@@ -34,6 +34,14 @@ class Stack {
 
 		return
 	}
+
+	isEmpty() {
+		if (this.#items.length) {
+			return false
+		}
+
+		return true
+	}
 };
 
 module.exports = Stack
