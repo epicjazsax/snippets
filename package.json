@@ -1,5 +1,6 @@
 {
-	"scripts": {
+	"type": "module",
+    "scripts": {
 		"test": "jest"
 	},
 	"devDependencies": {
