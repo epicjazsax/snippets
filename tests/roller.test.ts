@@ -2,8 +2,14 @@
 import { roll } from '../roller.ts'
 
 describe('rolls one die', () => {
-	it('returns a number', () => {
-		expect(typeof(roll(die))).toBe(number);
+	const die = '1d20';
+	it('returns a number when given a die to roll', () => {
+		expect(typeof(roll(die))).toBe('number');
+	});
+	it('cannot roll zero dice', () => {
+		expect(() => {
+			roll();
+		}).toThrow();
 	});
 });
 
