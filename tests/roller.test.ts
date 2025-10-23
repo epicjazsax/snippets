@@ -1,14 +1,20 @@
 //TESTS FOR THE DICE ROLLING FUNCTION
-import { roll } from '../roller.ts'
+import { Roller } from '../roller.ts'
+
+let roller: Roller;
+
+beforeAll(() => {
+	roller = new Roller();
+});
 
 describe('rolls one die', () => {
 	const die = '1d20';
 	it('returns a number when given a die to roll', () => {
-		expect(typeof(roll(die))).toBe('number');
+		expect(typeof(roller.roll(die))).toBe('number');
 	});
 	it('cannot roll zero dice', () => {
 		expect(() => {
-			roll();
+			roller.roll();
 		}).toThrow();
 	});
 });
