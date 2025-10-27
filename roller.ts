@@ -6,9 +6,13 @@
 // -roll dice of multiple varieties
 // -special readout for certain rolls (ex. nat1/nat20, snakeeyes)??
 export class Roller {
-    roll(die: string) {
-        if (die) {
-            return 2
+    roll(die: any) {
+        if ((typeof (die)) === 'number') {
+            if (Number.isInteger(die)) {
+                return 2
+            } else {
+                throw new Error
+            }
         } else {
             throw new Error
         }
