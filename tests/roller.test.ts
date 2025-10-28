@@ -17,10 +17,18 @@ describe('rolls a given number as a die', () => {
             roller.roll(2.5);
         }).toThrow();
     });
+    it('returns a positive number', () => {
+        expect(roller.roll(die)).toBeGreaterThan(0);
+    });
+    it('returns an integer', () => {
+        const rolledNumber = roller.roll(die);
+        const roundedDownToInteger = Math.floor(rolledNumber);
+        expect(rolledNumber).toEqual(roundedDownToInteger);
+    });
 });
 
 describe('cannot roll improper dice formats', () => {
-    it('cannot roll zero dice', () => {
+    it('cannot roll nothing', () => {
         expect(() => {
             roller.roll();
         }).toThrow();
