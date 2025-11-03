@@ -42,6 +42,57 @@ describe('rolls one d20', () => {
     });
 });
 
+describe('rolls other popular dice', () => {
+    it('returns a one as a d4s lowest value', () => {
+        mockMinValue();
+        expect(roller.roll(4)).toEqual(1);
+    });
+    it('returns a four as a d4s highest value', () => {
+        mockMaxValue();
+        expect(roller.roll(4)).toEqual(4);
+    });
+    it('returns a one as a d6s lowest value', () => {
+        mockMinValue();
+        expect(roller.roll(6)).toEqual(1);
+    });
+    it('returns a six as a d6s highest value', () => {
+        mockMaxValue();
+        expect(roller.roll(6)).toEqual(6);
+    });
+    it('returns a one as a d8s lowest value', () => {
+        mockMinValue();
+        expect(roller.roll(8)).toEqual(1);
+    });
+    it('returns an eight as a d8s highest value', () => {
+        mockMaxValue();
+        expect(roller.roll(8)).toEqual(8);
+    });
+    it('returns a one as a d10s lowest value', () => {
+        mockMinValue();
+        expect(roller.roll(10)).toEqual(1);
+    });
+    it('returns a ten as a d10s highest value', () => {
+        mockMaxValue();
+        expect(roller.roll(10)).toEqual(10);
+    });
+    it('returns a one as a d12s lowest value', () => {
+        mockMinValue();
+        expect(roller.roll(12)).toEqual(1);
+    });
+    it('returns a twelve as a d12s highest value', () => {
+        mockMaxValue();
+        expect(roller.roll(12)).toEqual(12);
+    });
+    it('returns a one as a d100s lowest value', () => {
+        mockMinValue();
+        expect(roller.roll(100)).toEqual(1);
+    });
+    it('returns a one-hundred as a d100s highest value', () => {
+        mockMaxValue();
+        expect(roller.roll(100)).toEqual(100);
+    });
+});
+
 describe('cannot roll improper dice formats', () => {
     it('cannot roll nothing', () => {
         expect(() => {
