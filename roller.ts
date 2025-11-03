@@ -9,8 +9,8 @@ export class Roller {
     roll(die: any) {
         if ((typeof (die)) === 'number') {
             if (Number.isInteger(die)) {
-                return die
-                //return (Math.floor((Math.random() * (die)) + 1))
+                //return 1
+                return (Math.floor((Math.random() * (die)) + 1))
             } else {
                 throw new Error('number must be an integer!')
             }
