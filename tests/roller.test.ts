@@ -14,7 +14,7 @@ beforeAll(() => {
     roller = new Roller();
 });
 
-describe('rolls one d20', () => {
+describe('rolls one d20 as an integer', () => {
     const die = 20;
     it('returns a number when given a die to roll', () => {
         expect(typeof (roller.roll(die))).toBe('number');
@@ -106,6 +106,28 @@ describe('cannot roll improper dice formats', () => {
         expect(() => {
             roller.roll(true);
         }).toThrow();
+    });
+});
+
+describe('rolls two d20s using a string', () => {
+    const dice = '2d20';
+    it('returns an object of rolled dice', () => {
+        expect(typeof (roller.roll(dice))).toEqual('object');
+    });
+    it('returns two rolls when given two dice', () => {
+        expect(roller.roll(dice)).toHaveLength(2);
+    });
+    it('returns both rolls as numbers', () => {
+        expect(typeof ((roller.roll(dice))[0])).toBe('number');
+        expect(typeof (roller.roll(dice)[1])).toBe('number');
+    });
+    it('returns two ones as its lowest values', () => {
+        mockMinValue();
+        expect(roller.roll(dice)).toEqual([1, 1]);
+    });
+    it('returns two twenties as its highest values', () => {
+        mockMaxValue();
+        expect(roller.roll(dice)).toEqual([20, 20]);
     });
 });
 
