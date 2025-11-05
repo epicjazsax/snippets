@@ -14,33 +14,13 @@ export class Roller {
         }
 
         if ((typeof (die)) === 'string') {
-            if (!die.includes('d')) {
-                throw new Error('missing dice delineator "d"')
+            let validator = new DiceStringValidator;
+            if (validator.validate(die) === false) {
+                throw new Error('dice string given in improper format')
             }
 
             const quantityAndSidesOfDice: string[] = die.split('d');
 
-            if (quantityAndSidesOfDice.length !== 2) {
-                throw new Error('invalid dice format')
-            }
-            if (!quantityAndSidesOfDice[0]) {
-                throw new Error('must give quantity of dice to roll')
-            }
-            if (!quantityAndSidesOfDice[1]) {
-                throw new Error('must give number of sides of dice to roll')
-            }
-            if (isNaN(+quantityAndSidesOfDice[0])) {
-                throw new Error('quantity must be a number')
-            }
-            if (isNaN(+quantityAndSidesOfDice[1])) {
-                throw new Error('sides must be a number')
-            }
-            if (Math.floor(+quantityAndSidesOfDice[0]) !== +quantityAndSidesOfDice[0]) {
-                throw new Error('quantity must be an integer')
-            }
-            if (Math.floor(+quantityAndSidesOfDice[1]) !== +quantityAndSidesOfDice[1]) {
-                throw new Error('sides must be an integer')
-            }
             const quantity = +quantityAndSidesOfDice[0];
             const sides = +quantityAndSidesOfDice[1];
             let arrayOfRolledDice: number[] = [];
@@ -51,6 +31,44 @@ export class Roller {
         }
 
         throw new Error('argument type not supported')
+    }
+};
+
+export class DiceStringValidator {
+    validate(dice: string) {
+        let validity: boolean = false;
+
+        if (!dice.includes('d')) {
+            throw new Error('missing dice delineator "d"')
+        }
+
+        const quantityAndSidesOfDice: string[] = dice.split('d');
+
+        if (quantityAndSidesOfDice.length !== 2) {
+            throw new Error('must give only one delineator "d"')
+        }
+        if (!quantityAndSidesOfDice[0]) {
+            throw new Error('must give quantity of dice to roll')
+        }
+        if (!quantityAndSidesOfDice[1]) {
+            throw new Error('must give number of sides on dice to roll')
+        }
+        if (isNaN(+quantityAndSidesOfDice[0])) {
+            throw new Error('quantity must be a number')
+        }
+        if (isNaN(+quantityAndSidesOfDice[1])) {
+            throw new Error('sides must be a number')
+        }
+        if (Math.floor(+quantityAndSidesOfDice[0]) !== +quantityAndSidesOfDice[0]) {
+            throw new Error('quantity must be an integer')
+        }
+        if (Math.floor(+quantityAndSidesOfDice[1]) !== +quantityAndSidesOfDice[1]) {
+            throw new Error('sides must be an integer')
+        }
+
+        validity = true;
+
+        return validity
     }
 };
 
