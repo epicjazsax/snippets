@@ -1,8 +1,7 @@
 //TESTS FOR THE DICE ROLLING FUNCTION
-import { DiceStringValidator, Roller } from '../roller.ts'
+import { Roller } from '../roller.ts'
 
 let roller: Roller;
-let diceStringValidator: DiceStringValidator;
 
 function mockMinValue() {
     return jest.spyOn(Math, 'random').mockReturnValue(0)
@@ -14,7 +13,6 @@ function mockMaxValue() {
 
 beforeAll(() => {
     roller = new Roller();
-    diceStringValidator = new DiceStringValidator();
 });
 
 describe('rolls one d20 as an integer', () => {
@@ -137,38 +135,38 @@ describe('rolls two d20s using a string', () => {
 describe('validates dice string properly', () => {
     it('requires the "d" delineator', () => {
         expect(() => {
-            diceStringValidator.validate('abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890');
+            roller.parse('abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890');
         }).toThrow();
         expect(() => {
-            diceStringValidator.validate('`-=[];,./~!@#$%^&*()_+{}|:"<>?');
+            roller.parse('`-=[];,./~!@#$%^&*()_+{}|:"<>?');
         }).toThrow();
         expect(() => {
-            diceStringValidator.validate('\\\'');
+            roller.parse('\\\'');
         }).toThrow();
     });
     it('requires a number before the "d"', () => {
         expect(() => {
-            diceStringValidator.validate('d20');
+            roller.parse('d20');
         }).toThrow();
     });
     it('requires a number after the "d"', () => {
         expect(() => {
-            diceStringValidator.validate('20d');
+            roller.parse('20d');
         }).toThrow();
     });
     it('requires exactly one "d" delineator', () => {
         expect(() => {
-            diceStringValidator.validate('d20d20');
+            roller.parse('d20d20');
         }).toThrow('');
     });
     it('requires quantity to be an integer', () => {
         expect(() => {
-            diceStringValidator.validate('twentyd20');
+            roller.parse('twentyd20');
         }).toThrow('');
     });
     it('requires number of sides to be an integer', () => {
         expect(() => {
-            diceStringValidator.validate('20dtwenty');
+            roller.parse('20dtwenty');
         }).toThrow('');
     });
 });
