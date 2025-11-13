@@ -1,7 +1,8 @@
 // FUNCTION TO ROLL DICE
 //
+// TODO: rewrite tests and roll 'number' so roll always returns an array
+//
 // future features include:
-// -roll dice of multiple varieties
 // -special readout for certain rolls (ex. nat1/nat20, snakeeyes)??
 export class Roller {
     private parse(dice: string): [number, number] {
@@ -9,7 +10,7 @@ export class Roller {
             throw new Error('missing dice delineator "d"')
         }
 
-        const quantityAndSidesOfDice: string[] = dice.split('d');
+        const quantityAndSidesOfDice: string[] = dice.split('d')
 
         if (quantityAndSidesOfDice.length !== 2) {
             throw new Error('must give only one delineator "d"')
@@ -33,25 +34,42 @@ export class Roller {
             throw new Error('sides must be an integer')
         }
 
-        const quantity = +quantityAndSidesOfDice[0];
-        const sides = +quantityAndSidesOfDice[1];
+        const quantity = +quantityAndSidesOfDice[0]
+        const sides = +quantityAndSidesOfDice[1]
 
         return [quantity, sides]
     }
 
-    roll(die: any) {
-        if ((typeof (die)) === 'number') {
-            return this.rollSingle(die)
+    roll(dice: any) {
+        if ((typeof (dice)) === 'number') {
+            return this.rollSingle(dice)
         }
 
-        if ((typeof (die)) === 'string') {
-            const [quantity, sides] = this.parse(die)
+        if ((typeof (dice)) === 'string') {
+            const [quantity, sides] = this.parse(dice)
 
-            let arrayOfRolledDice: number[] = [];
+            let arrayOfRolledDice: number[] = []
             for (let n = 0; n < quantity; n++) {
-                arrayOfRolledDice.push(this.rollSingle(sides));
+                arrayOfRolledDice.push(this.rollSingle(sides))
             }
             return arrayOfRolledDice
+        }
+        if (((typeof (dice)) === 'object') && (Array.isArray(dice))) {
+            let arrayOfRolls: number[] = []
+            for (let handful of dice) {
+                if ((typeof (handful)) !== 'string') {
+                    throw new Error('must give each set of dice as string')
+                }
+                let currentDice = this.roll(handful)
+                function isIterable(obj: any): boolean {
+                    return typeof obj[Symbol.iterator] === 'function'
+                }
+                if (!isIterable(currentDice)) {
+                    throw new Error('current handful of dice is not iterable')
+                }
+                arrayOfRolls = arrayOfRolls.concat(currentDice)
+            }
+            return arrayOfRolls
         }
 
         throw new Error('argument type not supported')
@@ -62,5 +80,5 @@ export class Roller {
         }
         return Math.floor((Math.random() * sidesOnDie) + 1)
     }
-};
+}
 
