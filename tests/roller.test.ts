@@ -135,38 +135,38 @@ describe('rolls two d20s using a string', () => {
 describe('validates dice string properly', () => {
     it('requires the "d" delineator', () => {
         expect(() => {
-            roller.parse('abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890');
+            roller.roll('abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890');
         }).toThrow();
         expect(() => {
-            roller.parse('`-=[];,./~!@#$%^&*()_+{}|:"<>?');
+            roller.roll('`-=[];,./~!@#$%^&*()_+{}|:"<>?');
         }).toThrow();
         expect(() => {
-            roller.parse('\\\'');
+            roller.roll('\\\'');
         }).toThrow();
     });
     it('requires a number before the "d"', () => {
         expect(() => {
-            roller.parse('d20');
+            roller.roll('d20');
         }).toThrow();
     });
     it('requires a number after the "d"', () => {
         expect(() => {
-            roller.parse('20d');
+            roller.roll('20d');
         }).toThrow();
     });
     it('requires exactly one "d" delineator', () => {
         expect(() => {
-            roller.parse('d20d20');
+            roller.roll('d20d20');
         }).toThrow('');
     });
     it('requires quantity to be an integer', () => {
         expect(() => {
-            roller.parse('twentyd20');
+            roller.roll('twentyd20');
         }).toThrow('');
     });
     it('requires number of sides to be an integer', () => {
         expect(() => {
-            roller.parse('20dtwenty');
+            roller.roll('20dtwenty');
         }).toThrow('');
     });
 });

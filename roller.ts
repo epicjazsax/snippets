@@ -1,11 +1,10 @@
 // FUNCTION TO ROLL DICE
 //
 // future features include:
-// -roll multiple dice
 // -roll dice of multiple varieties
 // -special readout for certain rolls (ex. nat1/nat20, snakeeyes)??
 export class Roller {
-    parse(dice: string): [number, number] {
+    private parse(dice: string): [number, number] {
         if (!dice.includes('d')) {
             throw new Error('missing dice delineator "d"')
         }
@@ -57,7 +56,7 @@ export class Roller {
 
         throw new Error('argument type not supported')
     }
-    rollSingle(sidesOnDie: number): number {
+    private rollSingle(sidesOnDie: number): number {
         if (!Number.isInteger(sidesOnDie)) {
             throw new Error('number of sides on die must be an integer!')
         }
